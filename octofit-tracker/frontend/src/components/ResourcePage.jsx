@@ -25,7 +25,7 @@ function renderValue(value) {
 
 export default function ResourcePage({
   title,
-  resource,
+  endpoint,
   description,
   emptyMessage,
   columns,
@@ -42,7 +42,7 @@ export default function ResourcePage({
       setError('');
 
       try {
-        const nextItems = await fetchCollection(resource);
+        const nextItems = await fetchCollection(endpoint);
 
         if (!cancelled) {
           setItems(nextItems);
@@ -63,7 +63,7 @@ export default function ResourcePage({
     return () => {
       cancelled = true;
     };
-  }, [resource, title]);
+  }, [endpoint, title]);
 
   return (
     <section className="resource-shell">
@@ -105,7 +105,7 @@ export default function ResourcePage({
             </thead>
             <tbody>
               {items.map((item, index) => (
-                <tr key={item._id ?? `${resource}-${index}`}>
+                <tr key={item._id ?? `${endpoint}-${index}`}>
                   {columns.map((column) => (
                     <td key={column.key}>{renderValue(item[column.key])}</td>
                   ))}
