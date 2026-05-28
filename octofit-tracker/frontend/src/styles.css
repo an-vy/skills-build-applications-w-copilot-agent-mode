@@ -1,5 +1,108 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+  background:
+    radial-gradient(circle at top left, rgba(255, 194, 77, 0.35), transparent 28%),
+    radial-gradient(circle at top right, rgba(38, 122, 255, 0.16), transparent 30%),
+    linear-gradient(180deg, #fffaf0 0%, #eef5ff 48%, #f6fbff 100%);
+  color: #102033;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.app-nav {
+  background: rgba(255, 252, 245, 0.82);
+  backdrop-filter: blur(16px);
+}
+
+.nav-pill {
+  color: #3a4b62;
+}
+
+.nav-pill-active {
+  background: #102033;
+  color: #fff7e8 !important;
+}
+
+.hero-shell {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.hero-copy,
+.panel-card,
+.status-card,
+.api-note {
+  border: 1px solid rgba(16, 32, 51, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 40px rgba(16, 32, 51, 0.08);
+}
+
+.hero-copy {
+  padding: 2rem;
+}
+
+.hero-panel {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.panel-card {
+  padding: 0.25rem;
+  overflow: hidden;
+}
+
+.status-card,
+.api-note {
+  padding: 1rem 1.25rem;
+}
+
+.section-kicker {
+  letter-spacing: 0.16em;
+  color: #c15b00;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.resource-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.api-endpoint {
+  display: block;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: #102033;
+  color: #fff7e8;
+  word-break: break-all;
+}
+
+.table thead th {
+  background: #fff7e8;
+  color: #5f3a00;
+  border-bottom-width: 1px;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .hero-shell {
+    grid-template-columns: 1fr;
+  }
 }
