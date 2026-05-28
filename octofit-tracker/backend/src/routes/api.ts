@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { getApiBaseUrl } from '../config/apiBaseUrl';
 import activitiesRouter from './activities';
 import leaderboardRouter from './leaderboard';
 import teamsRouter from './teams';
@@ -8,17 +9,26 @@ import workoutsRouter from './workouts';
 const apiRouter = Router();
 
 apiRouter.get('/health', (_req, res) => {
-  res.json({ status: 'ok', service: 'octofit-backend' });
+  const apiBaseUrl = getApiBaseUrl();
+
+  res.json({
+    status: 'ok',
+    service: 'octofit-backend',
+    apiBaseUrl,
+  });
 });
 
 apiRouter.get('/', (_req, res) => {
+  const apiBaseUrl = getApiBaseUrl();
+
   res.json({
+    apiBaseUrl,
     resources: [
-      '/api/users',
-      '/api/teams',
-      '/api/activities',
-      '/api/leaderboard',
-      '/api/workouts',
+      `${apiBaseUrl}/api/users`,
+      `${apiBaseUrl}/api/teams`,
+      `${apiBaseUrl}/api/activities`,
+      `${apiBaseUrl}/api/leaderboard`,
+      `${apiBaseUrl}/api/workouts`,
     ],
   });
 });
