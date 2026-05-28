@@ -2,7 +2,7 @@
   "name": "octofit-backend",
   "version": "0.1.0",
   "private": true,
-  "description": "OctoFit Tracker logic and data access tier",
+  "description": "OctoFit Tracker logic and data access tier - Node.js + Express + TypeScript + Mongoose",
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
