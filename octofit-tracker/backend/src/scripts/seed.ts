@@ -1,4 +1,3 @@
-import type { AddressInfo } from 'node:net';
 import { createApp } from '../app';
 import { connectToDatabase } from '../config/database';
 import Activity from '../models/Activity';
@@ -7,8 +6,16 @@ import Team from '../models/Team';
 import User from '../models/User';
 import Workout from '../models/Workout';
 
+declare const process: {
+  exit(code?: number): never;
+};
+
 type ApiResponse = {
   items: unknown[];
+};
+
+type ServerAddress = {
+  port: number;
 };
 
 const users = [
@@ -177,10 +184,10 @@ async function verifyApiData(): Promise<void> {
   try {
     await new Promise<void>((resolve, reject) => {
       server.once('listening', () => resolve());
-      server.once('error', (error) => reject(error));
+      server.once('error', (error: Error) => reject(error));
     });
 
-    const { port } = server.address() as AddressInfo;
+    const { port } = server.address() as ServerAddress;
     const baseUrl = `http://127.0.0.1:${port}/api`;
     const endpoints = [
       'users',
@@ -207,7 +214,7 @@ async function verifyApiData(): Promise<void> {
     }
   } finally {
     await new Promise<void>((resolve, reject) => {
-      server.close((error) => {
+      server.close((error?: Error) => {
         if (error) {
           reject(error);
           return;
